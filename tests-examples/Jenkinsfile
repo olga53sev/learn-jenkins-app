@@ -6,7 +6,6 @@ pipeline {
             steps {
                 echo 'Hello World'
                 sh 'echo "Hello from Jenkins, Olga"'
-                sh 'whoami'
             }
         }
     }
