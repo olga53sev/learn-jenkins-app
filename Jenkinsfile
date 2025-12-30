@@ -10,7 +10,7 @@ pipeline {
 
     stages {
         // Comment one-liner in Build stage
-        stage('Build') {
+         /* stage('Build') {
 
             steps {
                 sh '''
@@ -22,17 +22,34 @@ pipeline {
                    ls -la
                 '''
             }
-        }
+        }  */
         stage('Test') {
             /*
-             Comment block in test stage line 1
-             Comment block in test stage line2
+             bla
             */
             steps {
                 sh '''
                    echo "Test stage"
                    test -f build/index.html
                    npm test
+                '''
+            }
+        }
+        stage('E2E') {
+            /*
+             Build...
+            */
+            agent {
+              docker {
+                    image 'mcr.microsoft.com/playwright:v1.57.0-noble'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    npm install -g serve
+                    serve -s build
+                    npx playwright test
                 '''
             }
         }
