@@ -1,13 +1,4 @@
 pipeline {
-        agent {
-              docker {
-                    image 'node:18-alpine'
-                    args '-u root:root'
-                    reuseNode true
-                }
-        }
-
-
     stages {
         // Comment one-liner in Build stage
          /* stage('Build') {
@@ -24,9 +15,13 @@ pipeline {
             }
         }  */
         stage('Test') {
-            /*
-             bla
-            */
+            agent {
+              docker {
+                    image 'node:18-alpine'
+                    args '-u root:root'
+                    reuseNode true
+                }
+            }
             steps {
                 sh '''
                    echo "Test stage"
