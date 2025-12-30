@@ -9,6 +9,7 @@ pipeline {
 
 
     stages {
+        // Comment one-liner in Build stage
         stage('Build') {
 
             steps {
@@ -23,6 +24,10 @@ pipeline {
             }
         }
         stage('Test') {
+            /*
+             Comment block in test stage line 1
+             Comment block in test stage line2
+            */
             steps {
                 sh '''
                    echo "Test stage"
